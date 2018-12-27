@@ -70,12 +70,12 @@ except AttributeError:  # pragma: no cover
             ET._namespace_map[uri] = prefix
 
 
-# gevent is optional, and allows for asynchronous single logout
+# requests-futures is optional, and allows for asynchronous single logout
 # requests. If it is not present, synchronous requests will be sent.
 try:
-    import gevent
+    from requests_futures.sessions import FuturesSession as Session
 except ImportError:  # pragma: no cover
-    gevent = None
+    from requests import Session
 
 
 # defusedxml is optional, and is used for the /samlValidate
